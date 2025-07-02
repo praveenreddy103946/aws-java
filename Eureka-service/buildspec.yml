@@ -10,7 +10,7 @@ phases:
       - cd Eureka-service
       - mvn clean install
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 153893913552.dkr.ecr.eu-north-1.amazonaws.com)
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 153893913552.dkr.ecr.eu-north-1.amazonaws.com
       - REPOSITORY_URI=153893913552.dkr.ecr.eu-north-1.amazonaws.com/Eureka-service
       - IMAGE_TAG=latest
 
