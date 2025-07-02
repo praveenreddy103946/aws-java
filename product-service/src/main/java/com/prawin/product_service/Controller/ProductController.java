@@ -19,7 +19,7 @@ public class ProductController {
        List<Product> products = Arrays.asList(
                new Product(1,5000,"Iphone"),
                new Product(2,1000,"Air Buds"),
-               new Product(3,2000,"Watch")
+               new Product(3,2000,"Charger")
        );
 
        return products;
