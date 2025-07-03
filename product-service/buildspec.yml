@@ -31,6 +31,9 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
+      - echo "Listing files to confirm imagedefinitions.json exists:"
+      - find . -name "imagedefinitions.json"
+      - ls -l
 
 artifacts:
   files:
