@@ -7,6 +7,7 @@ phases:
 
   pre_build:
     commands:
+      - cd product-service
       - mvn clean install -DskipTests
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 153893913552.dkr.ecr.eu-north-1.amazonaws.com
@@ -15,15 +16,14 @@ phases:
 
   build:
     commands:
-      - echo Build started on `date`
+      - cd product-service
       - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
 
   post_build:
     commands:
-      - echo Build completed on `date`
+      - cd product-service
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - DOCKER_CONTAINER_NAME=aws-java-registry
-      - echo Writing imagedefinitions.json...
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo "Confirm imagedefinitions.json:"
       - find . -name "imagedefinitions.json"
@@ -31,5 +31,6 @@ phases:
       - cat imagedefinitions.json
 
 artifacts:
+  base-directory: product-service
   files:
     - imagedefinitions.json
