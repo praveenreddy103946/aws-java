@@ -29,7 +29,6 @@ phases:
       - echo "Confirm imagedefinitions.json:"
       - find . -name "imagedefinitions.json"
       - ls -l
-      - cat imagedefinitions.json
       - echo "successfull till here"
 artifacts:
   files:
