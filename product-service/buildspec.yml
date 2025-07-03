@@ -13,9 +13,9 @@ phases:
       - mvn clean install
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 153893913552.dkr.ecr.eu-north-1.amazonaws.com
-      - echo Setting variables...
-      - REPOSITORY_URI=153893913552.dkr.ecr.eu-north-1.amazonaws.com/product-service
-      - IMAGE_TAG=latest
+      - |
+        REPOSITORY_URI=153893913552.dkr.ecr.eu-north-1.amazonaws.com/product-service
+        IMAGE_TAG=latest
 
   build:
     commands:
