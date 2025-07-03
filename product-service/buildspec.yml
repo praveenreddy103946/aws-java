@@ -36,6 +36,7 @@ phases:
       - ls -l
 
 artifacts:
+  base-directory: .
   files:
-    - ./target/product-service-*.jar
-    - ./imagedefinitions.json
+    - imagedefinitions.json
+    - target/product-service-*.jar
