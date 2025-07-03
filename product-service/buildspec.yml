@@ -8,7 +8,8 @@ phases:
   pre_build:
     commands:
       - cd product-service
-      - mvn clean install -Dspring.profiles.active=ci -DskipTests
+      - export SPRING_PROFILES_ACTIVE=ci
+      - mvn clean install -DskipTests
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 153893913552.dkr.ecr.eu-north-1.amazonaws.com
       - REPOSITORY_URI=153893913552.dkr.ecr.eu-north-1.amazonaws.com/product-service
