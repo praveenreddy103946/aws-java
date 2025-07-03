@@ -21,6 +21,10 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo "Current directory:"
+      - pwd
+      - echo "Listing files:"
+      - ls -R
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - DOCKER_CONTAINER_NAME=aws-java-registry
       - echo Writing image definitions file...
