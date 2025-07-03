@@ -26,9 +26,10 @@ phases:
       - DOCKER_CONTAINER_NAME=aws-java-registry
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - ls -R product-service/
       - cat imagedefinitions.json
 
 artifacts:
   files:
-    - product-service/target/product-service.jar
+    - target/product-service.jar
     - imagedefinitions.json
