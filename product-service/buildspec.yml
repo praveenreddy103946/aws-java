@@ -25,8 +25,8 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - DOCKER_CONTAINER_NAME=aws-java-registry
       - echo Writing image definitions file...
-      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - cat imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > product-service/imagedefinitions.json
+      - cat product-service/imagedefinitions.json
 
 artifacts:
   files:
