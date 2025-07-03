@@ -30,3 +30,6 @@ phases:
       - find . -name "imagedefinitions.json"
       - ls -l
       - cat imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
