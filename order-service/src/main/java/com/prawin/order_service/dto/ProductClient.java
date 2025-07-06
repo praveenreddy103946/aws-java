@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "product-service", url="http://product-service.product-service.aws:7894")
+@FeignClient(name = "product-service", url="http://product-service-lb-1886046701.eu-north-1.elb.amazonaws.com/product-service")
 public interface ProductClient {
 
     @GetMapping("/products/{id}")

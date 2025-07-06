@@ -4,6 +4,7 @@ import com.prawin.order_service.dto.Order;
 import com.prawin.order_service.dto.OrderResponse;
 import com.prawin.order_service.dto.Product;
 import com.prawin.order_service.dto.ProductClient;
+import org.apache.commons.lang3.stream.IntStreams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,14 @@ public class OrderController {
     private Product getProductById(int id){
      log.info("calling get product by id method with product-id {}",id);
       return productClient.getProductById(id);
+    }
+
+    @GetMapping
+    private void callProductAPi(){
+        IntStreams.rangeClosed(10000).
+                forEach(i->{
+                    productClient.getAllProducts();
+                    System.out.println("calling service time " + i);
+                });
     }
 }

@@ -8,7 +8,8 @@ phases:
   pre_build:
     commands:
       - cd order-service
-      - mvn clean install
+      - export SPRING_PROFILES_ACTIVE=ci
+      - mvn clean install -DskipTests
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 153893913552.dkr.ecr.eu-north-1.amazonaws.com
       - REPOSITORY_URI=153893913552.dkr.ecr.eu-north-1.amazonaws.com/order-service
@@ -23,12 +24,13 @@ phases:
     commands:
       - echo Build completed on `date`
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - DOCKER_CONTAINER_NAME=aws-java-registry
-      - echo Writing image definitions file...
-      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - cat imagedefinitions.json
-
+      - DOCKER_CONTAINER_NAME=order-service
+      - echo Writing imagedefinitions.json...
+      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > ../imagedefinitions.json
+      - echo "Confirm imagedefinitions.json:"
+      - find . -name "imagedefinitions.json"
+      - ls -l
+      - echo "successfull till here"
 artifacts:
   files:
-    - order-service/target/order-service.jar
-    - order-service/imagedefinitions.json
+    - imagedefinitions.json
