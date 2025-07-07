@@ -51,11 +51,14 @@ public class OrderController {
     }
 
     @GetMapping
-    private void callProductAPi(){
+    private String callProductAPi(){
         IntStreams.rangeClosed(10000).
+                parallel().
                 forEach(i->{
                     productClient.getAllProducts();
                     System.out.println("calling service time " + i);
                 });
+
+        return "calling product service 1000 times completed";
     }
 }
